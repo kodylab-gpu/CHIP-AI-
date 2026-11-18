@@ -44,3 +44,16 @@ async def chat(payload: ChatRequest):
         raise HTTPException(status_code=504, detail='AI javobi kechikdi. Qayta urinib ko‘ring.')
     except (httpx.RequestError, KeyError, IndexError, TypeError, ValueError):
         raise HTTPException(status_code=502, detail='AI provayderidan javob olishda xatolik.')
+        
+from fastapi.responses import FileResponse
+from pathlib import Path
+
+@app.get("/")
+async def home():
+    index_path = Path(__file__).parent / "index.html"
+    if index_path.is_file():
+        return FileResponse(index_path)
+    raise HTTPException(
+        status_code=404,
+        detail="index.html topilmadi"
+    )
