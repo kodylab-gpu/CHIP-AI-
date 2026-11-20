@@ -1,10 +1,9 @@
+
 {
-  "version": 2,
-  "functions": {
-    "api/chat.py": { "maxDuration": 30 }
-  },
   "rewrites": [
-    { "source": "/api/health", "destination": "/api/chat.py" },
-    { "source": "/api/chat", "destination": "/api/chat.py" }
+    {
+      "source": "/api/:path*",
+      "destination": "/api/chat"
+    }
   ]
 }
