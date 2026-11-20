@@ -1,16 +1,13 @@
-# Chip AI — Vercel
+# Chip AI — Vercel starter
 
-## Deploy
-1. GitHub'da yangi repository yarating.
-2. Ushbu papka ICHIDAGI `index.html`, `api/`, `requirements.txt` va `README.md` ni repository ildiziga yuklang.
-3. Vercel -> Add New -> Project -> GitHub repository -> Import.
-4. Framework Preset: Other; Root Directory: `./`; Build Command va Output Directory override qilmang.
-5. Vercel Project -> Settings -> Environment Variables:
-   - `AI_API_KEY` = AI provayder API kaliti (maxfiy)
-   - `AI_MODEL` = provayderda mavjud model ID (masalan, OpenRouter hisobingizdagi bepul model ID)
-   - `AI_BASE_URL` = `https://openrouter.ai/api/v1` (ixtiyoriy)
-6. Deploy yoki environment variables qo‘shilgandan keyin Redeploy qiling.
+Upload the **contents of this folder** to the GitHub repository root. Delete the old root `chat.py`, `pyproject.toml`, and any previous conflicting `vercel.json` or Python build configuration. The new backend is `api/chat.py` and Vercel installs packages from `requirements.txt`.
 
-`/` statik `index.html` ni, `/api/chat` esa Vercel Python Function'ni ishlatadi.
+1. Import repository into Vercel, Framework Preset: Other, Root Directory: `./`.
+2. Project Settings → Environment Variables (sometimes shown under Environment/Variables):
+   - `AI_API_KEY`: your provider's secret key
+   - `AI_MODEL`: exact provider model ID
+   - `AI_BASE_URL`: `https://openrouter.ai/api/v1` (optional; default set)
+   Select Production and save. Redeploy after changing variables.
+3. Visit `/` for the interface and `/api/health` for backend health. `configured: false` means variables have not been configured.
 
-Eslatma: Bepul API model mavjudligi, kvotalar va Vercel serverless limitlari o‘zgaradi. Rasm yaratish va real internet qidiruvi hali ulanmagan. Public saytda API sarfini cheklash uchun rate limiting va abuse protection qo‘shish tavsiya etiladi.
+The UI is functional, but image generation and live web browsing are not implemented. Provider free tiers may have quotas. Do not put secrets in frontend files or GitHub.
