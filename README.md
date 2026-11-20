@@ -1,13 +1,13 @@
-# Chip AI — Vercel starter
+# Chip AI — Vercel repaired
 
-Upload the **contents of this folder** to the GitHub repository root. Delete the old root `chat.py`, `pyproject.toml`, and any previous conflicting `vercel.json` or Python build configuration. The new backend is `api/chat.py` and Vercel installs packages from `requirements.txt`.
+This project uses one FastAPI entrypoint (`chat:app`) to serve the interface and API.
 
-1. Import repository into Vercel, Framework Preset: Other, Root Directory: `./`.
-2. Project Settings → Environment Variables (sometimes shown under Environment/Variables):
-   - `AI_API_KEY`: your provider's secret key
-   - `AI_MODEL`: exact provider model ID
-   - `AI_BASE_URL`: `https://openrouter.ai/api/v1` (optional; default set)
-   Select Production and save. Redeploy after changing variables.
-3. Visit `/` for the interface and `/api/health` for backend health. `configured: false` means variables have not been configured.
+## Deploy
+1. Remove old files from your GitHub repository, then upload the **contents** of this folder (not the enclosing folder).
+2. Keep `chat.py`, `index.html`, `pyproject.toml`, `requirements.txt`, and `vercel.json` at the repository root.
+3. Deploy on Vercel (Framework: FastAPI / auto-detected).
+4. Visit `/` to view the UI and `/api/health` to check backend status.
+5. Configure `AI_API_KEY`, `AI_MODEL`, and optionally `AI_BASE_URL` in Vercel environment variables, then redeploy.
 
-The UI is functional, but image generation and live web browsing are not implemented. Provider free tiers may have quotas. Do not put secrets in frontend files or GitHub.
+## Notes
+The HTML is embedded in `chat.py` to ensure it is included in the serverless function. If you edit `index.html`, you must also update the embedded `INDEX_HTML` in `chat.py` (or regenerate the bundle). Never commit API keys.
